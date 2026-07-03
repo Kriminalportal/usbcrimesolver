@@ -2,7 +2,7 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Polismyndigheten – Krypterad USB-enhet</title>
     <style>
         :root {
@@ -17,6 +17,11 @@
             --border: #2e3748;
         }
 
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
@@ -27,7 +32,6 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
         .case-file {
@@ -79,6 +83,7 @@
             color: #64748b;
             border-left: 3px solid #475569;
             padding-left: 12px;
+            line-height: 1.5;
         }
 
         .evidence-meta strong {
@@ -180,6 +185,7 @@
             color: #38bdf8;
             margin-bottom: 15px;
             font-size: 0.95rem;
+            line-height: 1.4;
         }
 
         .input-wrapper {
@@ -230,6 +236,7 @@
             font-family: monospace;
             font-size: 0.9rem;
             display: none;
+            line-height: 1.4;
         }
 
         .status-success {
@@ -242,6 +249,78 @@
             background: rgba(220, 38, 38, 0.1);
             border: 1px solid var(--accent-red);
             color: #f87171;
+        }
+
+        /* Mobilanpassningar (Skärmar under 500px bredd) */
+        @media (max-width: 500px) {
+            body {
+                padding: 10px 8px;
+            }
+            .file-content {
+                padding: 15px;
+            }
+            .file-header {
+                padding: 12px 15px;
+            }
+            .file-title {
+                font-size: 0.75rem;
+            }
+            .confidential-stamp {
+                font-size: 0.65rem;
+                padding: 1px 6px;
+            }
+            .evidence-meta {
+                font-size: 0.8rem;
+                margin-bottom: 15px;
+            }
+            .note-paper {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .note-paper::before {
+                left: 10px;
+            }
+            .note-header {
+                font-size: 0.9rem;
+                margin-bottom: 10px;
+            }
+            .note-content {
+                font-size: 0.95rem;
+                padding-left: 5px;
+            }
+            .values-grid {
+                gap: 8px;
+                margin: 15px 0;
+            }
+            .value-card {
+                padding: 8px 0;
+                font-size: 1.2rem;
+            }
+            .terminal-zone {
+                padding: 15px;
+            }
+            .terminal-screen {
+                font-size: 0.85rem;
+            }
+            .input-wrapper {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .code-input {
+                padding: 14px;
+                font-size: 1.3rem;
+                width: 100%;
+            }
+            .unlock-btn {
+                padding: 14px 0;
+                font-size: 1rem;
+                width: 100%;
+                border-radius: 6px;
+            }
+            .status-message {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -290,7 +369,7 @@
             </div>
 
             <div class="input-wrapper" id="inputWrapper">
-                <input type="text" id="usbCode" class="code-input" maxlength="4" placeholder="••••" autocomplete="off">
+                <input type="text" id="usbCode" class="code-input" maxlength="4" placeholder="••••" autocomplete="off" inputmode="numeric" pattern="[0-9]*">
                 <button class="unlock-btn" onclick="verifyUSB()">Kör</button>
             </div>
 
